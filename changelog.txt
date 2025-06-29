@@ -1,0 +1,7 @@
+---------------------------------------------------------------------------------------------------
+Version: 1.0.0
+Date: 2025-06-29
+  Bugfixes:
+    - control.lua:280: bad argument [#2](https://github.com/Sarke/biter-factions-ng/issues/2) of 2 to 'table_size' (table expected, got nil)
+  Changes:
+    - use fgardt/factorio-mod-template
