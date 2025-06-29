@@ -113,11 +113,11 @@ function getChunkNestsAndAllocate(chunkarea, surface)
 			end
 			--if it's a spawner, add to the force's spawner list.
 			if not destroyed and entity.type == "unit-spawner" then
-				if not storage.nests[i] then
-					storage.nests[i] = {}
+				if not storage.nests[factionIndex] then
+					storage.nests[factionIndex] = {}
 				end
-				storage.nests[i][entity.unit_number] = entity --store the entity by its unit number in the force's list.
-				debugPrint("Faction " .. factionIndex .. " has " .. table_size(storage.nests[i]) .. " nests!")
+				storage.nests[factionIndex][entity.unit_number] = entity --store the entity by its unit number in the force's list.
+				debugPrint("Faction " .. factionIndex .. " has " .. table_size(storage.nests[factionIndex]) .. " nests!")
 			end
 
 			--special case for big monsters mod, making ridiculously powerful worms. try to cut them down to 1% health to give a chance to kill them in civil wars.
@@ -260,7 +260,7 @@ function runTickHandler(event)
 						end
 					else
 						if not nest.valid then
-							storage.nests[key] = nil --wipe out this entry, it's dead/invalid now.
+							storage.nests[i][key] = nil --wipe out this entry, it's dead/invalid now.
 						end
 						goto nextProgressDone
 					end
@@ -277,7 +277,7 @@ function runTickHandler(event)
 			end
 			if storage.attackProgress[i] >= maxCount then --if we've ticked up enough nests then we are done.
 				debugPrint("Biter faction " .. i .. " finished attacking with " .. storage.attackProgress[i] .. " nests!")
-				debugPrint("Biter faction has " .. table_size(storage.nests[i]) .. " nests")
+				debugPrint("Biter faction has " .. maxCount .. " nests")
 				storage.scheduledAttack[i] = 0
 				storage.attackProgress[i] = 0
 			end
